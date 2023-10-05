@@ -1,11 +1,6 @@
 #!/bin/bash
-
-# Lancer le serveur API (dans le dossier 'api')
-cd client  # Accéder au dossier du serveur API
-flask run -p 5000 &  # Démarrer le serveur API en arrière-plan
-
-# Revenir au dossier principal (où se trouve le serveur Flask d'affichage)
+cd client
+streamlit run app.py --server.port 8501 &
 cd ..
-
-# Lancer le serveur Flask d'affichage
-flask run -p 5001
+cd server
+uvicorn app:app --host 0.0.0.0 --port 8502 --reload &
